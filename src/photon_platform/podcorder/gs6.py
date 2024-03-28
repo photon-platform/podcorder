@@ -1,12 +1,11 @@
 import subprocess
 import gi
-import os
 import datetime
 import re
-from .post_process import *
+from pathlib import Path
 import threading
 import time
-
+from post_process import *  # Assuming this is where your processing functions are defined
 
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GLib
@@ -25,17 +24,41 @@ def display_elapsed_time(start_time, stop_event):
 
 
 def main():
-
     # Prompt for clip name and create directory
     title = input("Title for the clip: ")
     slug = slugify(title)
     ts = datetime.datetime.now().strftime("%y.%j.%H%M%S")
-    folder_name = f"{ts}_{slug}"
-    os.makedirs(folder_name, exist_ok=True)
+    sessions_path = Path.home() / 'Sessions'
+    folder_path = sessions_path / f"{ts}_{slug}"
+    folder_path.mkdir(exist_ok=True)
 
-    screen_file = os.path.join(folder_name, "screen.mkv")
-    mic_file = os.path.join(folder_name, "mic.ogg")
-    system_file = os.path.join(folder_name, "system.ogg")
+    screen_file = folder_path / "screen.mkv"
+    mic_file = folder_path / "mic.ogg"
+    system_file = folder_path / "system.ogg"
+
+    # Define GStreamer pipelines with str conversion of Path objects
+    screen_pipeline_cmd = (
+        f"ximagesrc use-damage=0 startx=0 starty=768 endx=1919 endy=1847 ! "
+        f"videoconvert ! vp8enc cpu-used=4 target-bitrate=2000000 ! matroskamux ! "
+        f"filesink location={str(screen_file)}"
+    )
+    screen_pipeline = Gst.parse_launch(screen_pipeline_cmd)
+
+    mic_pipeline_cmd = (
+        f"pulsesrc device=alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_201305-00.analog-stereo ! "
+        f"volume volume=1.8 ! "
+        f"audioconvert ! opusenc ! oggmux ! "
+        f"filesink location={str(mic_file)}"
+    )
+    mic_pipeline = Gst.parse_launch(mic_pipeline_cmd)
+
+    system_pipeline_cmd = (
+        f"pulsesrc device=alsa_output.pci-0000_0a_00.6.analog-stereo.monitor ! "
+        f"volume volume=0.7 ! "
+        f"audioconvert ! opusenc ! oggmux ! "
+        f"filesink location={str(system_file)}"
+    )
+    system_audio_pipeline = Gst.parse_launch(system_pipeline_cmd)
 
     screen_pipeline = Gst.parse_launch(
         f"ximagesrc use-damage=0 startx=0 starty=768 endx=1919 endy=1847 ! "
@@ -90,14 +113,15 @@ def main():
 
     mic_clean_file = clean_mic_audio(mic_file)
 
-    screen_system_file = combine_screen_system(folder_name, screen_file, system_file)
+    screen_file = invert_video_colors(screen_file)
+    screen_system_file = combine_screen_system(folder_path, screen_file, system_file)
 
-    all_file = combine_all(folder_name, screen_system_file, mic_clean_file)
+    all_file = combine_all(folder_path, screen_system_file, mic_clean_file)
 
-    mic_wave = generate_waveform(mic_clean_file, "Green")
-    system_wave = generate_waveform(system_file, "Orange")
+    system_wave = generate_waveform(system_file, "Green")
+    mic_wave = generate_waveform(mic_clean_file, "Orange")
 
-    screen_waves_file = combine_screen_waves(folder_name, screen_file, mic_wave, system_wave)
+    screen_waves_file = combine_screen_waves(folder_path, screen_file, mic_wave, system_wave)
 
 if __name__ == "__main__":
     main()
