@@ -1,17 +1,17 @@
 mission
 =======
 
+.. todo:: set mission statement and goals
+
 .. contents::
    :local:
    :backlinks: none
 
 
-Summary
-
 goals
 -----
 
-.. postlist:: 
+.. .. postlist:: 
    :category: GOALS
    :excerpts:
 

@@ -1,17 +1,15 @@
 podcorder
-=========
+============
 
 .. include:: intro.rst
 
-recent logs:
-------------
+recent logs
+-----------
 
 .. postlist:: 5
    :excerpts:
 
 
-contents:
----------
 
 .. toctree::
    :hidden:
@@ -19,15 +17,19 @@ contents:
 
    mission/index.rst
    usage/index.rst
-   modules/index.rst
    demos/index.rst
+   modules/index.rst
+   logs.rst
    refs/index.rst
-   log </log#https://>
+   glossary.rst
+   connect.rst
    todos.rst
+   changelog.rst
+   about.rst
 
 
-Indices and tables
-==================
+indices
+-------
 
 * :ref:`genindex`
 * :ref:`modindex`

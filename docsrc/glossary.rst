@@ -1,7 +1,9 @@
 glossary
 ========
 
+.. todo:: establish glossary entries
+
 .. glossary::
-   test
-       a test item
+   example
+       an example of how to structure a glossary item
 

@@ -1,6 +1,6 @@
 
-photon_platform.podcorder
-=========================
+modules
+=======
 
 .. automodule:: photon_platform.podcorder
    :members:
