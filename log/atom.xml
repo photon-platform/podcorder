@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>https://photon-platform.github.io/podcorder</id>
+  <title>photon-platform • podcorder</title>
+  <updated>2024-05-05T23:12:09.995677+00:00</updated>
+  <link href="https://photon-platform.github.io/podcorder"/>
+  <link href="https://photon-platform.github.io/podcorder/log/atom.xml" rel="self"/>
+  <generator uri="https://ablog.readthedocs.org/" version="unknown.dev">ABlog</generator>
+  <entry>
+    <id>https://photon-platform.github.io/podcorder/log/24.125-164141/</id>
+    <title>introducing podcorder</title>
+    <updated>2024-05-04T16:41:41+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;&lt;strong&gt;consolidating configuration, themes, and extensions for Sphinx&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://photon-platform.github.io/podcorder/log/24.125-164141/"/>
+    <summary>consolidating configuration, themes, and extensions for Sphinx</summary>
+    <category term="intro" label="intro"/>
+    <published>2024-05-04T16:41:41+00:00</published>
+  </entry>
+  <entry>
+    <id>https://photon-platform.github.io/podcorder/log/24.126-084330/</id>
+    <title>test</title>
+    <updated>2024-05-05T08:43:30+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://photon-platform.github.io/podcorder/log/24.126-084330/"/>
+    <published>2024-05-05T08:43:30+00:00</published>
+  </entry>
+  <entry>
+    <id>https://photon-platform.github.io/podcorder/log/24.126-084512/</id>
+    <title>add global_conf.py</title>
+    <updated>2024-05-05T08:45:12+00:00</updated>
+    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
+&lt;p&gt;common settings for photon conf files&lt;/p&gt;
+&lt;/div&gt;
+</content>
+    <link href="https://photon-platform.github.io/podcorder/log/24.126-084512/"/>
+    <summary>common settings for photon conf files</summary>
+    <published>2024-05-05T08:45:12+00:00</published>
+  </entry>
+</feed>
